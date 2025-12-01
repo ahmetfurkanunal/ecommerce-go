@@ -26,8 +26,6 @@ func writeJSON(w http.ResponseWriter, status int, v interface{}) {
 	_ = json.NewEncoder(w).Encode(v)
 }
 
-// ---- Kullanıcı İşlemleri ----
-
 func (api *API) HandleRegisterUser(w http.ResponseWriter, r *http.Request) {
 	if r.Method != http.MethodPost {
 		w.WriteHeader(http.StatusMethodNotAllowed)
@@ -50,7 +48,6 @@ func (api *API) HandleRegisterUser(w http.ResponseWriter, r *http.Request) {
 	writeJSON(w, http.StatusCreated, u)
 }
 
-// PUT /users/{id}
 func (api *API) HandleUpdateUser(w http.ResponseWriter, r *http.Request) {
 	if r.Method != http.MethodPut {
 		w.WriteHeader(http.StatusMethodNotAllowed)
@@ -80,7 +77,6 @@ func (api *API) HandleUpdateUser(w http.ResponseWriter, r *http.Request) {
 	writeJSON(w, http.StatusOK, u)
 }
 
-// POST /users/login
 func (api *API) HandleLogin(w http.ResponseWriter, r *http.Request) {
 	if r.Method != http.MethodPost {
 		w.WriteHeader(http.StatusMethodNotAllowed)
@@ -103,7 +99,6 @@ func (api *API) HandleLogin(w http.ResponseWriter, r *http.Request) {
 	writeJSON(w, http.StatusOK, user)
 }
 
-// GET /users
 func (api *API) HandleListUsers(w http.ResponseWriter, r *http.Request) {
 	if r.Method != http.MethodGet {
 		w.WriteHeader(http.StatusMethodNotAllowed)
@@ -119,5 +114,3 @@ func (api *API) HandleListUsers(w http.ResponseWriter, r *http.Request) {
 	}
 	writeJSON(w, http.StatusOK, users)
 }
-
-// ---- Ürün İşlemleri ---- (Create/List/Delete/Update aynı mantıkla buraya koyabilirsin; sen zaten yazmıştın)

@@ -21,7 +21,6 @@ func main() {
 	}
 	defer db.Close()
 
-	// schema.sql'i uygulayalım (çok basit yöntem)
 	schema, err := os.ReadFile("schema.sql")
 	if err != nil {
 		log.Fatal("read schema:", err)
@@ -38,11 +37,6 @@ func main() {
 	http.HandleFunc("/users/login", api.HandleLogin)
 	http.HandleFunc("/users/", api.HandleUpdateUser)
 	http.HandleFunc("/users", api.HandleListUsers)
-
-	// Burada ürün ve sepet handler'larını da bağlıyorsun
-	// http.HandleFunc("/products", ...)
-	// http.HandleFunc("/cart/add", ...)
-	// vs. (senin mevcut kodun kalsın)
 
 	log.Println("Server listening on :8080")
 	if err := http.ListenAndServe(":8080", nil); err != nil {

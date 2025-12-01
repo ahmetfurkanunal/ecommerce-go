@@ -248,7 +248,6 @@ func (r *sqlCartRepo) AddItem(userID int64, item models.CartItem) error {
 	ctx, cancel := withTimeout(r.db)
 	defer cancel()
 
-	// varsa quantity artır, yoksa insert
 	_, err := r.db.ExecContext(ctx,
 		`INSERT INTO cart_items(user_id, product_id, quantity, price)
          VALUES (?, ?, ?, ?)
